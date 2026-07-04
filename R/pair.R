@@ -151,6 +151,56 @@ crosswalk_codes <- function(codes, crosswalk, unmatched = NA_character_) {
   unlist(out, use.names = FALSE)
 }
 
+convert_gb_codes <- function(codes, from_year = NULL, to_year = NULL, level = NULL,
+                             pairs = load_gb_crosswalks(),
+                             years = c(1986, 1994, 2002, 2011, 2017),
+                             unmatched = NA_character_) {
+  if (is.null(to_year)) {
+    stop("`to_year` is required.", call. = FALSE)
+  }
+
+  if (!is.null(level)) {
+    level <- match.arg(toupper(level), c("S", "M", "L", "AUTO"))
+    if (identical(level, "AUTO")) {
+      level <- NULL
+    }
+  }
+
+  if (is.null(from_year) || is.null(level)) {
+    detected <- detect_gb_year(
+      codes = codes,
+      pairs = pairs,
+      years = years,
+      level = if (is.null(level)) "auto" else level,
+      ties = "first",
+      details = FALSE
+    )
+    if (is.null(from_year)) {
+      from_year <- detected$year[1L]
+    }
+    if (is.null(level)) {
+      level <- detected$level[1L]
+    }
+  }
+
+  from_year <- as.character(from_year)
+  to_year <- as.character(to_year)
+  input <- normalize_gb_for_level(codes, level)
+
+  if (identical(from_year, to_year)) {
+    return(input)
+  }
+
+  cw <- compose_gb_crosswalk(
+    pairs = pairs,
+    from_year = from_year,
+    to_year = to_year,
+    level = level,
+    years = years
+  )
+  crosswalk_codes(input, cw, unmatched = unmatched)
+}
+
 convert_gb_column <- function(data, column, pairs = load_gb_crosswalks(), from_year, to_year,
                               level = c("S", "M", "L"), output_col = NULL,
                               years = c(1986, 1994, 2002, 2011, 2017),

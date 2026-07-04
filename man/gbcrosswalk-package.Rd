@@ -9,6 +9,7 @@
 \alias{build_gb_2011_2017}
 \alias{codes_to_gb_level}
 \alias{compose_gb_crosswalk}
+\alias{convert_gb_codes}
 \alias{convert_gb_column}
 \alias{crosswalk_codes}
 \alias{detect_gb_year}
@@ -46,6 +47,10 @@ as_gb_pair(data, from_year, to_year, from_col = NULL, to_col = NULL,
 compose_gb_crosswalk(pairs, from_year, to_year, level = c("S", "M", "L"),
                      years = c(1986, 1994, 2002, 2011, 2017))
 crosswalk_codes(codes, crosswalk, unmatched = NA_character_)
+convert_gb_codes(codes, from_year = NULL, to_year = NULL, level = NULL,
+                 pairs = load_gb_crosswalks(),
+                 years = c(1986, 1994, 2002, 2011, 2017),
+                 unmatched = NA_character_)
 detect_gb_year(codes, pairs = load_gb_crosswalks(),
                years = c(1986, 1994, 2002, 2011, 2017),
                level = c("auto", "S", "M", "L"),
@@ -68,12 +73,12 @@ build_gb_2011_2017(path, sheet = 1, old_col = NULL, new_col = NULL)
 \arguments{
 \item{x, code, codes}{Character or numeric GB codes.}
 \item{width}{Target code width for left-zero padding.}
-\item{level}{One of \code{"S"} for 4-digit, \code{"M"} for 3-digit, \code{"L"} for 2-digit codes, or \code{"auto"} where supported.}
+\item{level}{One of \code{"S"} for 4-digit, \code{"M"} for 3-digit, \code{"L"} for 2-digit codes, \code{"auto"} where supported, or \code{NULL} in \code{convert_gb_codes()} to infer it from the input vector.}
 \item{ties}{Whether to return all tied best matches or just the first one.}
 \item{details}{Whether to return all candidate-year scores as well as the best match.}
 \item{data}{A data frame containing crosswalk columns or a user data frame.}
 \item{column}{Name of the input code column to convert.}
-\item{year, from_year, to_year}{GB classification years.}
+\item{year, from_year, to_year}{GB classification years. In \code{convert_gb_codes()}, \code{to_year} is required and \code{from_year} can be \code{NULL} to infer it from the input vector.}
 \item{s_col, from_col, to_col, old_col, new_col}{Column names for source and target codes.}
 \item{to_all_col, parent_col}{Names for collapsed target and dominant parent columns.}
 \item{parent_digits, digits}{Number of prefix digits used for parent codes.}
@@ -100,4 +105,6 @@ or a composed crosswalk depending on the function.
 \examples{
 normalize_gb_code(c("123", "0123"))
 codes_to_gb_level("0123", "M")
+convert_gb_codes(c("572", "593", "843"), from_year = 2017, to_year = 2011, level = "M")
+convert_gb_codes(c("572", "593", "843"), to_year = 2011)
 }

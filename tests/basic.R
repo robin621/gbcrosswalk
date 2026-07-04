@@ -11,15 +11,25 @@ stopifnot(identical(fill_down_missing(c("a", NA, "b", NA)), c("a", "a", "b", "b"
 p1 <- data.frame(
   from_year = "1994", to_year = "2002", level = "S",
   from_code = c("0101", "0102"), to_code = c("0201", "0202"),
+  to_code_all = c("0201", "0202"),
   stringsAsFactors = FALSE
 )
 p2 <- data.frame(
   from_year = "2002", to_year = "2011", level = "S",
   from_code = c("0201", "0202"), to_code = c("1101", "1102"),
+  to_code_all = c("1101", "1102"),
   stringsAsFactors = FALSE
 )
 cw <- compose_gb_crosswalk(list(p1, p2), 1994, 2011, "S", years = c(1994, 2002, 2011))
 stopifnot(identical(crosswalk_codes(c("0101", "0102"), cw), c("1101", "1102")))
+stopifnot(identical(
+  convert_gb_codes(c("0101", "0102"), 1994, 2011, "S", list(p1, p2), years = c(1994, 2002, 2011)),
+  c("1101", "1102")
+))
+stopifnot(identical(
+  convert_gb_codes(c("0101", "0102"), to_year = 2011, pairs = list(p1, p2), years = c(1994, 2002, 2011)),
+  c("1101", "1102")
+))
 
 df <- data.frame(ind = c("0101", "0102"), stringsAsFactors = FALSE)
 df <- convert_gb_column(df, "ind", list(p1, p2), 1994, 2011, "S", years = c(1994, 2002, 2011))

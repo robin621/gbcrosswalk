@@ -43,14 +43,12 @@ Convert a vector of GB2017 3-digit codes to GB2011 3-digit codes:
 ```r
 codes_2017 <- c("572", "593", "843", "905", "018")
 
-cw_2017_2011 <- compose_gb_crosswalk(
-  pairs = load_gb_crosswalks(),
+convert_gb_codes(
+  codes_2017,
   from_year = 2017,
   to_year = 2011,
   level = "M"
 )
-
-crosswalk_codes(codes_2017, cw_2017_2011)
 ```
 
 Expected output:
@@ -60,6 +58,34 @@ Expected output:
 ```
 
 Underscores mean one input code maps to multiple target codes.
+
+If you do not know the source year or granularity, leave them out. The function
+will infer them from the input vector:
+
+```r
+convert_gb_codes(codes_2017, to_year = 2011)
+```
+
+You can also provide only the part you know:
+
+```r
+convert_gb_codes(codes_2017, to_year = 2011, level = "M")
+convert_gb_codes(codes_2017, from_year = 2017, to_year = 2011)
+```
+
+Use the lower-level helpers when you want to inspect or reuse the composed
+crosswalk table:
+
+```r
+cw_2017_2011 <- compose_gb_crosswalk(
+  pairs = load_gb_crosswalks(),
+  from_year = 2017,
+  to_year = 2011,
+  level = "M"
+)
+
+crosswalk_codes(codes_2017, cw_2017_2011)
+```
 
 ## Convert A Data Column
 

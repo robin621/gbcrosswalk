@@ -7,16 +7,17 @@ codes_2017_m <- c("572", "593", "843", "905", "018")
 detect_gb_year(codes_2017_m, level = "M")
 
 # 2. Convert the vector to GB2011 M-level codes.
-cw_2017_to_2011_m <- compose_gb_crosswalk(
-  pairs = load_gb_crosswalks(),
+convert_gb_codes(
+  codes_2017_m,
   from_year = 2017,
   to_year = 2011,
   level = "M"
 )
 
-crosswalk_codes(codes_2017_m, cw_2017_to_2011_m)
+# 3. If source vintage or level is unknown, leave them missing.
+convert_gb_codes(codes_2017_m, to_year = 2011)
 
-# 3. Convert a column in a data frame.
+# 4. Convert a column in a data frame.
 df <- data.frame(
   firm_id = seq_along(codes_2017_m),
   industry = codes_2017_m,
