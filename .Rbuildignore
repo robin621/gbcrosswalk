@@ -3,4 +3,10 @@
 ^\.gitignore$
 ^\.gitattributes$
 ^README\.Rmd$
+^README\.md$
 ^cran-comments\.md$
+^data-raw$
+^examples$
+^gbcrosswalk[.]Rcheck$
+^gbcrosswalk_.*[.]tar[.]gz$
+^inst/raw-crosswalks/GB_T_4754_2017[.]pdf$

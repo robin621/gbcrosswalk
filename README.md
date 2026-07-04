@@ -1,8 +1,8 @@
 # gbcrosswalk
 
 `gbcrosswalk` converts Chinese GB/T 4754 industry codes across classification
-years. The package ships with both standardized crosswalk CSVs and the raw
-source crosswalk files, so common conversions work immediately after install.
+years. The package ships with standardized crosswalk CSVs and compact raw
+crosswalk tables, so common conversions work immediately after install.
 
 Supported GB vintages:
 
@@ -188,26 +188,27 @@ Each standardized crosswalk has this schema:
 from_year, to_year, level, from_code, to_code, to_code_all, source_pair
 ```
 
-The package also includes the raw source files:
+The installed package also includes compact raw crosswalk inputs:
 
 ```r
 gb_raw_crosswalk_path()
-gb_raw_crosswalk_path("GB_T_4754_2017.pdf")
 ```
 
-Bundled raw inputs:
+Bundled raw inputs in package builds:
 
 ```text
 GB_1986_1994_cw.xlsx
 GB_1994_2002_cw.csv
 GB_2002_2011_cw.xls
 GB_2011_2017_raw.csv
-GB_T_4754_2017.pdf
 ```
+
+The large 2017 source PDF is retained in the GitHub repository for provenance,
+but is excluded from CRAN-style package builds to keep the source package small.
 
 ## Rebuild Standardized CSVs
 
-The standardized CSVs can be rebuilt from the package-shipped raw files:
+From a source checkout, the standardized CSVs can be rebuilt from the raw files:
 
 ```r
 source("data-raw/build-crosswalks.R")
