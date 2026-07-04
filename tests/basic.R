@@ -46,3 +46,14 @@ stopifnot(detected_m$year[1] == "2017")
 
 detected_auto <- detect_gb_year(c("011", "016", "970"))
 stopifnot(detected_auto$level[1] == "M")
+
+reviewed_2017_fixes <- convert_gb_codes(
+  c("1321", "3964", "6999", "7296", "8740"),
+  from_year = 2017,
+  to_year = 2011,
+  level = "S"
+)
+stopifnot(identical(
+  reviewed_2017_fixes,
+  c("1320_1363", "3599_3855_3859", "6990_7296", "7296", "8610_8620")
+))
