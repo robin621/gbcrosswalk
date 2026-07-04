@@ -1,6 +1,6 @@
 Package: gbcrosswalk
 Title: Crosswalk Chinese GB Industry Classifications Across Years
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("Yajie", "Wang", role = c("aut", "cre"), email = "wangyajie621@gmail.com")
   )
