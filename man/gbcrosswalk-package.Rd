@@ -15,6 +15,7 @@
 \alias{dominant_prefix}
 \alias{fill_down_missing}
 \alias{gb_crosswalk_path}
+\alias{gb_raw_crosswalk_path}
 \alias{load_gb_crosswalks}
 \alias{normalize_gb_for_level}
 \alias{normalize_gb_code}
@@ -52,6 +53,7 @@ standardize_gb_pairs(pairs)
 write_gb_crosswalk_csvs(pairs, dir, prefix = "gb", include_combined = TRUE)
 read_gb_crosswalk_csvs(path)
 gb_crosswalk_path(file = "gb_all_pairs.csv")
+gb_raw_crosswalk_path(file = NULL)
 load_gb_crosswalks(path = gb_crosswalk_path())
 build_gb_1986_1994(path, sheet = 1)
 build_gb_1994_2002(path)
@@ -73,7 +75,7 @@ build_gb_2011_2017(path, sheet = 1, old_col = NULL, new_col = NULL)
 \item{levels}{Levels to include when standardizing a pairwise crosswalk.}
 \item{source_pair}{Optional source label.}
 \item{pairs}{A standard pair table or list of pair tables. Defaults to the package-shipped merged CSV in \code{convert_gb_column()}.}
-\item{file}{Package-shipped CSV filename under \code{extdata}.}
+\item{file}{Package-shipped filename under \code{extdata} or \code{raw-crosswalks}.}
 \item{dir}{Directory where CSV files should be written.}
 \item{prefix}{Filename prefix for exported CSV files.}
 \item{include_combined}{Whether to also write one combined all-pairs CSV.}

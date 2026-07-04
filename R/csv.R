@@ -66,6 +66,14 @@ gb_crosswalk_path <- function(file = "gb_all_pairs.csv") {
   system.file("extdata", file, package = "gbcrosswalk", mustWork = TRUE)
 }
 
+gb_raw_crosswalk_path <- function(file = NULL) {
+  if (is.null(file)) {
+    system.file("raw-crosswalks", package = "gbcrosswalk", mustWork = TRUE)
+  } else {
+    system.file("raw-crosswalks", file, package = "gbcrosswalk", mustWork = TRUE)
+  }
+}
+
 load_gb_crosswalks <- function(path = gb_crosswalk_path()) {
   read_gb_crosswalk_csvs(path)
 }

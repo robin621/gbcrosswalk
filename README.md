@@ -15,10 +15,10 @@ It is based on the workflow in your original script:
 ## Install locally
 
 ```r
-remotes::install_local("C:/Users/wangy/Documents/Codex/2026-07-04/find/outputs/gbcrosswalk")
+remotes::install_github("robin621/gbcrosswalk")
 ```
 
-or from inside the package folder:
+or from a local checkout:
 
 ```r
 install.packages(".", repos = NULL, type = "source")
@@ -29,13 +29,12 @@ install.packages(".", repos = NULL, type = "source")
 ```r
 library(gbcrosswalk)
 
-cw_94_02 <- build_gb_1994_2002("GB_1994_2002_cw.csv")
-cw_86_94 <- build_gb_1986_1994("GB_1986_1994_cw.xlsx")
-cw_02_11 <- build_gb_2002_2011("GB_2002_2011_cw.xls")
+raw_dir <- gb_raw_crosswalk_path()
 
-# For the 2011-2017 PDF, export/extract Appendix B to CSV/XLSX with columns
-# for old 2011 and new 2017 codes, then standardize it:
-cw_11_17 <- build_gb_2011_2017("GB_2011_2017_cw.csv")
+cw_94_02 <- build_gb_1994_2002(file.path(raw_dir, "GB_1994_2002_cw.csv"))
+cw_86_94 <- build_gb_1986_1994(file.path(raw_dir, "GB_1986_1994_cw.xlsx"))
+cw_02_11 <- build_gb_2002_2011(file.path(raw_dir, "GB_2002_2011_cw.xls"))
+cw_11_17 <- build_gb_2011_2017(file.path(raw_dir, "GB_2011_2017_raw.csv"))
 ```
 
 Each builder returns a standard long table with columns:
@@ -56,6 +55,7 @@ The package also ships with the current standardized CSVs:
 ```r
 gb_pairs <- load_gb_crosswalks()
 gb_crosswalk_path("gb_all_pairs.csv")
+gb_raw_crosswalk_path("GB_T_4754_2017.pdf")
 ```
 
 ## Compose years

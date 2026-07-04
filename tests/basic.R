@@ -24,3 +24,6 @@ stopifnot(identical(crosswalk_codes(c("0101", "0102"), cw), c("1101", "1102")))
 df <- data.frame(ind = c("0101", "0102"), stringsAsFactors = FALSE)
 df <- convert_gb_column(df, "ind", list(p1, p2), 1994, 2011, "S", years = c(1994, 2002, 2011))
 stopifnot(identical(df$ind_gb2011_S, c("1101", "1102")))
+
+stopifnot(file.exists(gb_crosswalk_path("gb_all_pairs.csv")))
+stopifnot(file.exists(gb_raw_crosswalk_path("GB_1994_2002_cw.csv")))

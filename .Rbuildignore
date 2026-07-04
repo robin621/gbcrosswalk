@@ -1,5 +1,6 @@
-^\\.github$
-^\\.git$
-^\\.gitignore$
-^README\\.Rmd$
-^cran-comments\\.md$
+^\.github
+^\.git$
+^\.gitignore$
+^\.gitattributes$
+^README\.Rmd$
+^cran-comments\.md$
