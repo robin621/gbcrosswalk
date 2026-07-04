@@ -85,6 +85,13 @@ df2 <- convert_gb_column(
 )
 ```
 
+Detect the most likely GB vintage of a code vector:
+
+```r
+detect_gb_year(c("0111", "0164", "9700"), level = "S")
+detect_gb_year(c("011", "016", "970"), details = TRUE)
+```
+
 ## Adding versions after 2017
 
 When you add a newer PDF, extract the official old-new appendix into a table

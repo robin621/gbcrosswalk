@@ -27,3 +27,12 @@ stopifnot(identical(df$ind_gb2011_S, c("1101", "1102")))
 
 stopifnot(file.exists(gb_crosswalk_path("gb_all_pairs.csv")))
 stopifnot(file.exists(gb_raw_crosswalk_path("GB_1994_2002_cw.csv")))
+
+detected <- detect_gb_year(c("0111", "0164", "9700"), level = "S")
+stopifnot(detected$year[1] == "2017")
+
+detected_m <- detect_gb_year(c("011", "016", "970"), level = "M")
+stopifnot(detected_m$year[1] == "2017")
+
+detected_auto <- detect_gb_year(c("011", "016", "970"))
+stopifnot(detected_auto$level[1] == "M")

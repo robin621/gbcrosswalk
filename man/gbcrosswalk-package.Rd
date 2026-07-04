@@ -11,6 +11,7 @@
 \alias{compose_gb_crosswalk}
 \alias{convert_gb_column}
 \alias{crosswalk_codes}
+\alias{detect_gb_year}
 \alias{derive_gb_levels}
 \alias{dominant_prefix}
 \alias{fill_down_missing}
@@ -45,6 +46,10 @@ as_gb_pair(data, from_year, to_year, from_col = NULL, to_col = NULL,
 compose_gb_crosswalk(pairs, from_year, to_year, level = c("S", "M", "L"),
                      years = c(1986, 1994, 2002, 2011, 2017))
 crosswalk_codes(codes, crosswalk, unmatched = NA_character_)
+detect_gb_year(codes, pairs = load_gb_crosswalks(),
+               years = c(1986, 1994, 2002, 2011, 2017),
+               level = c("auto", "S", "M", "L"),
+               ties = c("all", "first"), details = FALSE)
 convert_gb_column(data, column, pairs = load_gb_crosswalks(), from_year, to_year,
                   level = c("S", "M", "L"), output_col = NULL,
                   years = c(1986, 1994, 2002, 2011, 2017),
@@ -63,7 +68,9 @@ build_gb_2011_2017(path, sheet = 1, old_col = NULL, new_col = NULL)
 \arguments{
 \item{x, code, codes}{Character or numeric GB codes.}
 \item{width}{Target code width for left-zero padding.}
-\item{level}{One of \code{"S"} for 4-digit, \code{"M"} for 3-digit, or \code{"L"} for 2-digit codes.}
+\item{level}{One of \code{"S"} for 4-digit, \code{"M"} for 3-digit, \code{"L"} for 2-digit codes, or \code{"auto"} where supported.}
+\item{ties}{Whether to return all tied best matches or just the first one.}
+\item{details}{Whether to return all candidate-year scores as well as the best match.}
 \item{data}{A data frame containing crosswalk columns or a user data frame.}
 \item{column}{Name of the input code column to convert.}
 \item{year, from_year, to_year}{GB classification years.}
