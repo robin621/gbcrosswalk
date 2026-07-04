@@ -2,10 +2,10 @@ Package: gbcrosswalk
 Title: Crosswalk Chinese GB Industry Classifications Across Years
 Version: 0.0.1
 Authors@R: c(
-    person("Yajie", "Wang", role = c("aut", "cre"), email = "yajie@example.com")
+    person("Yajie", "Wang", role = c("aut", "cre"), email = "wangyajie621@gmail.com")
   )
 Author: Yajie Wang
-Maintainer: Yajie Wang <yajie@example.com>
+Maintainer: Yajie Wang <wangyajie621@gmail.com>
 Description: Tools for cleaning, building, and composing crosswalks between
     Chinese GB/T 4754 industry classification vintages. The package starts
     with the historical workflow for 1986, 1994, 2002, 2011, and 2017 and is
