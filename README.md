@@ -324,14 +324,19 @@ GB_2002_ISIC_cw.csv
 HS_to_I3_all_cw.csv
 ```
 
-The original GB/T 4754 standard PDFs are retained in the GitHub repository for
+The original GB/GB/T 4754 standard PDFs are retained in the GitHub repository for
 readers who want to inspect the source documents:
 
 ```text
+inst/raw-crosswalks/GB_4754_1984.pdf
 inst/raw-crosswalks/GB_T_4754_1994.pdf
 inst/raw-crosswalks/GB_T_4754_2002.pdf
 inst/raw-crosswalks/GB_T_4754_2017.pdf
 ```
+
+I did not add a 2007 standard PDF because the GB/GB/T 4754 revision history
+used for this package identifies 1984, 1994, 2002, 2011, and 2017 editions;
+I have not found a separate GB/T 4754-2007 edition.
 
 These PDFs are excluded from CRAN-style package builds to keep the source
 package small.
