@@ -18,7 +18,16 @@ M = 3-digit middle class
 L = 2-digit large class
 ```
 
-The package also includes a GB2002 to ISIC Rev.3 crosswalk.
+Additional bundled classification links:
+
+```text
+GB/T 4754-2002 industry codes -> ISIC Revision 3 activity codes
+HS - Combined Product Code -> ISIC Revision 3 activity codes
+```
+
+The HS source is the file's `HS - Combined Product Code` classification. It is
+not labeled as a single HS1996, HS2002, HS2007, HS2012, or HS2017 revision in
+the source file.
 
 ## Install
 
@@ -122,12 +131,12 @@ This appends a new column and preserves the original:
 5       5      018                019_051
 ```
 
-## Convert GB To ISIC
+## Convert GB To ISIC Revision 3
 
-Use `convert_gb_to_isic()` to link GB industry codes to ISIC Rev.3 codes.
-The bundled direct crosswalk is GB2002 to ISIC Rev.3. If your input GB codes
-come from another supported GB vintage, the function first converts them to
-GB2002 and then links them to ISIC.
+Use `convert_gb_to_isic()` to link GB industry codes to ISIC Revision 3 codes.
+The bundled direct crosswalk is GB/T 4754-2002 to ISIC Revision 3. If your
+input GB codes come from another supported GB vintage, the function first
+converts them to GB2002 and then links them to ISIC Revision 3.
 
 ```r
 convert_gb_to_isic(
@@ -159,6 +168,56 @@ function will use `detect_gb_year()` before linking:
 
 ```r
 convert_gb_to_isic(c("572", "593", "843"), isic_level = "M")
+```
+
+## Convert GB To HS Combined
+
+Use `convert_gb_to_hs()` to link GB industry codes to `HS - Combined Product
+Code` values. The route is:
+
+```text
+GB/T 4754 input year -> GB/T 4754-2002 -> ISIC Revision 3 -> HS Combined
+```
+
+Ask for `HS6`, `HS4`, or `HS2` output with `hs_level`:
+
+```r
+convert_gb_to_hs(
+  "152",
+  gb_year = 2002,
+  gb_level = "M",
+  hs_level = "HS2",
+  isic_level = "M"
+)
+```
+
+Expected output:
+
+```text
+"11_22"
+```
+
+You can also start from supported non-2002 GB vintages:
+
+```r
+convert_gb_to_hs(
+  "151",
+  gb_year = 2017,
+  gb_level = "M",
+  hs_level = "HS2",
+  isic_level = "M"
+)
+```
+
+For the reverse direction, use `convert_hs_to_gb()`. If `hs_level` is omitted,
+the package infers `HS6`, `HS4`, or `HS2` from code length:
+
+```r
+convert_hs_to_gb(
+  c("010110", "010111", "970600"),
+  gb_year = 2002,
+  gb_level = "M"
+)
 ```
 
 ## Detect The Source Year
@@ -223,13 +282,30 @@ gb_crosswalk_path("gb_all_pairs.csv")
 load_gb_crosswalks()
 gb_isic_crosswalk_path("gb_2002_isic3.csv")
 load_gb_isic_crosswalk()
+hs_isic_crosswalk_path("hs_combined_isic3.csv")
+load_hs_isic_crosswalk()
 ```
 
-Each standardized crosswalk has this schema:
+The GB-year standardized crosswalk has this schema:
 
 ```text
 from_year, to_year, level, from_code, to_code, to_code_all, source_pair
 ```
+
+The GB-ISIC standardized crosswalk has this schema:
+
+```text
+gb_year, gb_level, gb_code, isic_revision, isic_level, isic_code, source
+```
+
+The HS-ISIC standardized crosswalk has this schema:
+
+```text
+hs_system, hs_level, hs_code, isic_revision, isic_level, isic_code, source
+```
+
+The bundled ISIC links are specifically ISIC Revision 3. The bundled HS link is
+specifically `HS - Combined Product Code` to ISIC Revision 3.
 
 The installed package also includes compact raw crosswalk inputs:
 
@@ -245,6 +321,7 @@ GB_1994_2002_cw.csv
 GB_2002_2011_cw.xls
 GB_2011_2017_raw.csv
 GB_2002_ISIC_cw.csv
+HS_to_I3_all_cw.csv
 ```
 
 The large 2017 source PDF is retained in the GitHub repository for provenance,
@@ -257,6 +334,7 @@ From a source checkout, the standardized CSVs can be rebuilt from the raw files:
 ```r
 source("data-raw/build-crosswalks.R")
 source("data-raw/build-isic-crosswalks.R")
+source("data-raw/build-hs-crosswalks.R")
 ```
 
 The rebuild script writes refreshed CSVs to `inst/extdata/`.

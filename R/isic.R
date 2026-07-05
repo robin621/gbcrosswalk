@@ -43,7 +43,7 @@ build_gb_2002_isic <- function(path) {
         isic_revision = "3",
         isic_level = isic_level,
         isic_code = substr(isic_s, 1L, isic_digits),
-        source = "GB_2002_ISIC",
+        source = "GB_T_4754_2002_ISIC_Rev3",
         stringsAsFactors = FALSE
       )
     }
