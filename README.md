@@ -18,6 +18,8 @@ M = 3-digit middle class
 L = 2-digit large class
 ```
 
+The package also includes a GB2002 to ISIC Rev.3 crosswalk.
+
 ## Install
 
 ```r
@@ -120,6 +122,45 @@ This appends a new column and preserves the original:
 5       5      018                019_051
 ```
 
+## Convert GB To ISIC
+
+Use `convert_gb_to_isic()` to link GB industry codes to ISIC Rev.3 codes.
+The bundled direct crosswalk is GB2002 to ISIC Rev.3. If your input GB codes
+come from another supported GB vintage, the function first converts them to
+GB2002 and then links them to ISIC.
+
+```r
+convert_gb_to_isic(
+  c("0111", "0112", "9800"),
+  gb_year = 2002,
+  gb_level = "S"
+)
+```
+
+Expected output:
+
+```text
+"0111" "0111" "9900"
+```
+
+You can ask for coarser ISIC levels:
+
+```r
+convert_gb_to_isic(
+  c("0111", "0112", "9800"),
+  gb_year = 2002,
+  gb_level = "S",
+  isic_level = "M"
+)
+```
+
+If the source GB year or GB level is unknown, leave them missing and the
+function will use `detect_gb_year()` before linking:
+
+```r
+convert_gb_to_isic(c("572", "593", "843"), isic_level = "M")
+```
+
 ## Detect The Source Year
 
 If you do not know which GB vintage a vector comes from, score it against all
@@ -180,6 +221,8 @@ The package includes standardized CSVs:
 ```r
 gb_crosswalk_path("gb_all_pairs.csv")
 load_gb_crosswalks()
+gb_isic_crosswalk_path("gb_2002_isic3.csv")
+load_gb_isic_crosswalk()
 ```
 
 Each standardized crosswalk has this schema:
@@ -201,6 +244,7 @@ GB_1986_1994_cw.xlsx
 GB_1994_2002_cw.csv
 GB_2002_2011_cw.xls
 GB_2011_2017_raw.csv
+GB_2002_ISIC_cw.csv
 ```
 
 The large 2017 source PDF is retained in the GitHub repository for provenance,
@@ -212,6 +256,7 @@ From a source checkout, the standardized CSVs can be rebuilt from the raw files:
 
 ```r
 source("data-raw/build-crosswalks.R")
+source("data-raw/build-isic-crosswalks.R")
 ```
 
 The rebuild script writes refreshed CSVs to `inst/extdata/`.

@@ -1,6 +1,6 @@
 Package: gbcrosswalk
 Title: Crosswalk Chinese GB Industry Classifications Across Years
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: c(
     person(
       "Yajie", "Wang",

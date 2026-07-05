@@ -37,6 +37,21 @@ stopifnot(identical(df$ind_gb2011_S, c("1101", "1102")))
 
 stopifnot(file.exists(gb_crosswalk_path("gb_all_pairs.csv")))
 stopifnot(file.exists(gb_raw_crosswalk_path("GB_1994_2002_cw.csv")))
+stopifnot(file.exists(gb_isic_crosswalk_path("gb_2002_isic3.csv")))
+stopifnot(file.exists(gb_raw_crosswalk_path("GB_2002_ISIC_cw.csv")))
+
+stopifnot(identical(
+  convert_gb_to_isic(c("0111", "0112", "9800"), gb_year = 2002, gb_level = "S"),
+  c("0111", "0111", "9900")
+))
+stopifnot(identical(
+  convert_gb_to_isic(c("011", "980"), gb_year = 2002, gb_level = "M", isic_level = "M"),
+  c("011", "990")
+))
+stopifnot(identical(
+  convert_gb_to_isic(c("572", "593", "843"), gb_year = 2017, gb_level = "M", isic_level = "M"),
+  c("603", "630", "851")
+))
 
 detected <- detect_gb_year(c("0111", "0164", "9700"), level = "S")
 stopifnot(detected$year[1] == "2017")
