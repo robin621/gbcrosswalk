@@ -324,8 +324,17 @@ GB_2002_ISIC_cw.csv
 HS_to_I3_all_cw.csv
 ```
 
-The large 2017 source PDF is retained in the GitHub repository for provenance,
-but is excluded from CRAN-style package builds to keep the source package small.
+The original GB/T 4754 standard PDFs are retained in the GitHub repository for
+readers who want to inspect the source documents:
+
+```text
+inst/raw-crosswalks/GB_T_4754_1994.pdf
+inst/raw-crosswalks/GB_T_4754_2002.pdf
+inst/raw-crosswalks/GB_T_4754_2017.pdf
+```
+
+These PDFs are excluded from CRAN-style package builds to keep the source
+package small.
 
 ## Rebuild Standardized CSVs
 

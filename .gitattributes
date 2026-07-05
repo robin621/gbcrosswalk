@@ -4,5 +4,6 @@
 *.md text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
+*.pdf binary
 DESCRIPTION text eol=lf
 NAMESPACE text eol=lf
