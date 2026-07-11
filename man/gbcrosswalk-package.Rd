@@ -41,9 +41,10 @@
 \alias{write_gb_crosswalk_csvs}
 \title{Crosswalk Chinese GB Industry Classifications Across Years}
 \description{
-Utilities for cleaning, building, and composing Chinese GB/T 4754 industry
-classification crosswalks. The package standardizes adjacent pairwise
-crosswalks into a long format and composes them across years.
+Utilities for cleaning, building, and composing Chinese recommended national
+standard (Guobiao/Tuijian, GB/T) 4754 industry classification crosswalks. The
+package standardizes adjacent pairwise crosswalks into a long format and
+composes them across years.
 }
 \usage{
 normalize_gb_code(x, width = 4)

@@ -1,6 +1,6 @@
 Package: gbcrosswalk
 Title: Crosswalk Chinese GB Industry Classifications Across Years
-Version: 0.0.7
+Version: 0.0.8
 Authors@R: c(
     person(
       "Yajie", "Wang",
@@ -14,12 +14,14 @@ Authors@R: c(
       )
     )
   )
-Description: Tools for cleaning, building, and composing crosswalks between
-    Chinese GB/T 4754 industry classification vintages. The package starts
-    with the historical workflow for 1986, 1994, 2002, 2011, and 2017 and is
-    designed so later PDF-derived vintages can be added as additional adjacent
-    pairwise crosswalks. It also includes GB/T 4754-2002 to ISIC Revision 3
-    links and HS Combined product code to ISIC Revision 3 links.
+Description: Clean, build, and compose crosswalks between Chinese recommended
+    national standard (Guobiao/Tuijian, GB/T) 4754 industry classification
+    vintages. The package starts with the historical workflow for 1986, 1994,
+    2002, 2011, and 2017 and is designed so later source-document vintages can
+    be added as additional adjacent pairwise crosswalks. It also includes GB/T
+    4754-2002 to International Standard Industrial Classification of All
+    Economic Activities (ISIC) Revision 3 links and Harmonized System (HS)
+    Combined product code to ISIC Revision 3 links.
 License: MIT + file LICENSE
 URL: https://github.com/robin621/gbcrosswalk
 BugReports: https://github.com/robin621/gbcrosswalk/issues

@@ -1,6 +1,15 @@
-## Initial CRAN submission
+## Follow-up CRAN submission
 
-This is an initial CRAN submission.
+This is a follow-up submission for a package already on CRAN.
+
+In this version I have addressed CRAN feedback by:
+
+* removing the redundant "Tools for" opening from the Description field;
+* explaining the acronyms used in the Description field:
+  * GB/T: Guobiao/Tuijian, the Chinese recommended national standard prefix;
+  * ISIC: International Standard Industrial Classification of All Economic
+    Activities;
+  * HS: Harmonized System.
 
 ## Test environments
 
@@ -10,7 +19,9 @@ This is an initial CRAN submission.
 
 0 errors | 0 warnings | 1 note
 
-* This is a new submission.
+* Days since last update: 0.
+  This follow-up is being submitted soon after the initial CRAN release to
+  address CRAN feedback on the Description field.
 
 ## Notes
 
