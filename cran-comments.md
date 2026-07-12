@@ -20,7 +20,7 @@ In this version I have addressed CRAN feedback by:
 
 0 errors | 0 warnings | 1 note
 
-* Days since last update: 0.
+* Days since last update: 1.
   This follow-up is being submitted soon after the initial CRAN release to
   address CRAN feedback on the Description field.
 
