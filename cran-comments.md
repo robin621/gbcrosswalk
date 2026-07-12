@@ -5,7 +5,8 @@ This is a follow-up submission for a package already on CRAN.
 In this version I have addressed CRAN feedback by:
 
 * removing the redundant "Tools for" opening from the Description field;
-* explaining the acronyms used in the Description field:
+* explaining the non-obvious acronyms used in the Description field, following
+  the CRAN Cookbook guidance on explaining acronyms:
   * GB/T: Guobiao/Tuijian, the Chinese recommended national standard prefix;
   * ISIC: International Standard Industrial Classification of All Economic
     Activities;

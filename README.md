@@ -1,8 +1,10 @@
 # gbcrosswalk
 
 `gbcrosswalk` converts Chinese GB/T 4754 industry codes across classification
-years. The package ships with standardized crosswalk CSVs and compact raw
-crosswalk tables, so common conversions work immediately after install.
+years. GB/T means Guobiao/Tuijian, the recommended Chinese national standard
+prefix used for the 4754 industry classification standard. The package ships
+with standardized crosswalk CSVs and compact raw crosswalk tables, so common
+conversions work immediately after install.
 
 Supported GB vintages:
 
